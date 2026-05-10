@@ -7,10 +7,10 @@
       copy:
         src: "/var/snap/jenkins/5013/workspace/MavenAnsibleWebApp1/target/MavenAnsibleWebApp1.war"
         dest: "/opt/tomcat/webapps/MavenAnsibleWebApp1.war"
-
-    - name: Shutdown Tomcat
-      shell: /opt/tomcat/bin/shutdown.sh
-      ignore_errors: yes
-
-    - name: Start Tomcat
-      shell: /opt/tomcat/bin/startup.sh
+        remote_src: no
+        
+    - name: Restart Tomcat
+      shell: |
+        /opt/tomcat/bin/shutdown.sh || true
+        sleep 5
+        /opt/tomcat/bin/startup.sh
