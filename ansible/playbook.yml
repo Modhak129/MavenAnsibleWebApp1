@@ -9,8 +9,8 @@
         remote_src: no
 
     - name: Shutdown Tomcat
-  	  shell: /opt/tomcat/bin/shutdown.sh
+      shell: /opt/tomcat/bin/shutdown.sh
   	  ignore_errors: yes
-
-	- name: Start Tomcat
+  	  
+    - name: Start Tomcat
   	  shell: /opt/tomcat/bin/startup.sh
