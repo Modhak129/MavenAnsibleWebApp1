@@ -9,8 +9,13 @@
         dest: "/opt/tomcat/webapps/MavenAnsibleWebApp1.war"
         remote_src: no
         
-    - name: Restart Tomcat
-      shell: |
-        /opt/tomcat/bin/shutdown.sh || true
-        sleep 5
-        /opt/tomcat/bin/startup.sh
+    - name: Stop Tomcat
+      shell: /opt/tomcat/bin/catalina.sh stop
+      ignore_errors: yes
+
+    - name: Wait for Tomcat to stop
+      pause:
+        seconds: 10
+
+    - name: Start Tomcat
+      shell: nohup /opt/tomcat/bin/catalina.sh start >/dev/null 2>&1 &
